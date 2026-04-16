@@ -125,15 +125,15 @@ export const contact = {
 export const socials: SocialItem[] = [
   {
     name: 'Instagram',
-    href: 'https://instagram.com/',
+    href: '#',
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/',
+    href: '#',
   },
   {
     name: 'X',
-    href: 'https://x.com/',
+    href: '#',
   },
 ]
 

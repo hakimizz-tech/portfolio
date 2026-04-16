@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import heroBackground from '../../assets/bg-header.png'
+import heroBackground from '../../assets/bg-header.webp'
 import { heroQuote, personalInfo } from '../../data/portfolioData'
 
 export function HeroSection() {

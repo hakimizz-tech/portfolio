@@ -16,14 +16,22 @@ import {
 } from '../../data/portfolioData'
 
 export function PortfolioPage() {
-  const siteUrl =
-    import.meta.env.VITE_SITE_URL ||
-    (typeof window !== 'undefined' ? window.location.origin : 'https://example.com')
-  const canonicalUrl = new URL('/', siteUrl).toString()
+  const basePath = import.meta.env.VITE_BASE_PATH || '/'
+  const withLeadingSlash = basePath.startsWith('/') ? basePath : `/${basePath}`
+  const normalizedBasePath = withLeadingSlash.endsWith('/')
+    ? withLeadingSlash
+    : `${withLeadingSlash}/`
+  const fallbackSiteUrl =
+    typeof window !== 'undefined'
+      ? new URL(normalizedBasePath, window.location.origin).toString()
+      : 'https://example.com/'
+  const rawSiteUrl = import.meta.env.VITE_SITE_URL || fallbackSiteUrl
+  const siteUrl = rawSiteUrl.endsWith('/') ? rawSiteUrl : `${rawSiteUrl}/`
+  const canonicalUrl = new URL('.', siteUrl).toString()
   const pageTitle = `${personalInfo.name} | Software Engineer Portfolio`
   const pageDescription =
     'Portfolio of Joshua Kimathi, a software engineer in Nairobi building web apps, tools, and thoughtful digital products.'
-  const imageUrl = new URL('/favicon.svg', siteUrl).toString()
+  const imageUrl = new URL('favicon.svg', siteUrl).toString()
 
   const personSchema = {
     '@context': 'https://schema.org',
